@@ -33,5 +33,3 @@ docker-compose up -d
 docker ps -a
 ```
 
-## License
-[P2pro Technologies](https://p2protech.com/)
