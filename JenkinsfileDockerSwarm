@@ -9,21 +9,21 @@ node{
       sh "${mavenCMD} clean package"
     } 
     
-    stage("Build Dokcer Image") {
-         sh "docker build -t dockerhandson/spring-boot-mongo ."
+    stage("Build Docker Image") {
+         sh "docker build -t anand2909/spring-boot-mongo ."
     }
     
     stage("Docker Push"){
         withCredentials([string(credentialsId: 'Docker_Hub_Pwd', variable: 'Docker_Hub_Pwd')]) {
           sh "docker login -u dockerhandson -p ${Docker_Hub_Pwd}"
         }
-        sh "docker push dockerhandson/spring-boot-mongo"
+        sh "docker push anand2909/spring-boot-mongo"
         
     }
     
     // Remove local image in Jenkins Server
     stage("Remove Local Image"){
-        sh "docker rmi -f dockerhandson/spring-boot-mongo"
+        sh "docker rmi -f anand2909/spring-boot-mongo"
     }
     
     stage("Deploy to docker swarm cluster"){
