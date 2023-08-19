@@ -10,15 +10,7 @@ services:
     working_dir: /opt/app
     depends_on:
       - mongo
-    deploy:
-      replicas: 2
-      update_config:
-        parallelism: 1
-        delay: 20s
-      restart_policy:
-        condition: on-failure 
-      
-
+  
   mongo:
     image: mongo
     container_name: springboot-mongo
