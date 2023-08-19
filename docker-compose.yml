@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   springboot:
-    image: dockerp2pro/spring-boot-mongo:latest
+    image: anand2909/spring-boot-mongo
     restart: always
     container_name: springboot
     ports:
