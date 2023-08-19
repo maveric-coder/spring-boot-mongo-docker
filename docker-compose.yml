@@ -6,7 +6,7 @@ services:
     ports:
       - 8080:8080
     networks:
-       - customoverlay1
+       - webapp-net
     working_dir: /opt/app
     depends_on:
       - mongo
@@ -14,11 +14,13 @@ services:
   mongo:
     image: mongo
     container_name: springboot-mongo
+    networks:
+      webapp-net:
     restart: always
     
 volumes:
   vol1:
     
 networks:
-  customoverlay1:
+  webapp-net:
 
