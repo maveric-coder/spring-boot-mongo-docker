@@ -22,7 +22,7 @@ services:
       - mongobckp:/data/db
     
 volumes:
-  mongo:
+  mongobckp:
     
 networks:
   webapp-net:
