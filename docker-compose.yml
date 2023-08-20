@@ -18,9 +18,11 @@ services:
     networks:
       webapp-net:
     restart: unless-stopped
+    volumes:
+      - mongobckp:/data/db
     
 volumes:
-  vol1:
+  mongo:
     
 networks:
   webapp-net:
