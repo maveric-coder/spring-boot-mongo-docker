@@ -7,7 +7,7 @@ services:
     ports:
       - 8080:8080
     networks:
-       - webapp-net
+       webapp-net:
     working_dir: /opt/app
     depends_on:
       - mongo
