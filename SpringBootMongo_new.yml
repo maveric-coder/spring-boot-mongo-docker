@@ -2,28 +2,31 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   labels:
-    name: springboot
+    name: springapp-rc
   name: spring-controller
 spec:
   replicas: 2
+  selector:
+    name: springapp
   template:
     metadata:
+      name: springapp-pod
       labels:
-        name: springboot
+        name: springapp
     spec:
       containers:
-      - image: anand2909/spring-boot-mongo
-        name: springboot-container
+      - image: dockerp2pro/spring-boot-mongo:latest
+        name: springapp-container
         ports:
-        - name: springboot
-          containerPort: 8080      
+        - name: springapp
+          containerPort: 8080
 ---
 # Node Port Service
 apiVersion: v1
 kind: Service
 metadata:
   labels:
-    name: springboot
+    name: springboot-service
   name: springboot
 spec:
   type: NodePort
@@ -31,4 +34,4 @@ spec:
     - port: 80
       targetPort: 8080
   selector:
-    name: springboot
+    name: springapp
