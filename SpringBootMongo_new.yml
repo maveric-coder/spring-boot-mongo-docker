@@ -15,7 +15,7 @@ spec:
         name: springapp
     spec:
       containers:
-      - image: dockerp2pro/spring-boot-mongo:latest
+      - image: anand2909/spring-boot-mongo:latest
         name: springapp-container
         ports:
         - name: springapp
