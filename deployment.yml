@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: springapp
-        image: anand2090/spring-boot-mongo
+        image: anand2909/spring-boot-mongo
         ports:
         - containerPort: 8080
