@@ -19,18 +19,3 @@ spec:
         image: anand2909/spring-boot-mongo
         ports:
         - containerPort: 8080
----
-# Node Port Service
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    name: springboot-service
-  name: springboot
-spec:
-  type: NodePort
-  ports:
-    - port: 80
-      targetPort: 8080
-  selector:
-    name: springapp
