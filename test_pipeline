@@ -1,0 +1,20 @@
+node{
+
+    def mavenHome = tool name: "mymvn"
+    
+    stage("Git CheckOut"){
+        git url: 'https://github.com/maveric-coder/spring-boot-mongo-docker.git',branch: 'main'
+    }
+    
+    stage("Maven Clean Package"){
+      
+      sh "${mavenHome}/bin/mvn clean package"
+    }
+    stage("Build Docker image"){
+        sshagent(['4119cd36-c11d-413a-b5c0-5cd1603f1bba']) {
+            sh 'ssh -o StrictHostKeyChecking=no ubuntu@52.91.148.135 docker pull nginx'
+            
+            
+          }
+    }
+}
