@@ -11,10 +11,25 @@ node{
       sh "${mavenHome}/bin/mvn clean package"
     }
     stage("Build Docker image"){
-        sshagent(['4119cd36-c11d-413a-b5c0-5cd1603f1bba']) {
-            sh 'ssh -o StrictHostKeyChecking=no ubuntu@52.91.148.135 docker pull nginx'
-            
+        sh "docker build -t anand2909/spring-boot-mongo1 ."
             
           }
+    stage("Push the image to Docker hub")
+    {
+        withCredentials([string(credentialsId: 'docker_hub_pwd', variable: 'docker_hub_pwd')]) {
+        sh "docker login -u anand2909 -p ${Docker_Hub_Pwd}"
+    }
+     sh "docker push anand2909/spring-boot-mongo1"
+    }
+    stage("Remove local image")
+    {
+        sh "docker rmi -f anand2909/spring-boot-mongo1"
+    }
+    stage("Deploy to docker"){
+        sshagent(['docker_vm']) {
+		    sh 'scp -o StrictHostKeyChecking=no  docker-compose.yml ubuntu@54.196.37.38:'
+		    //sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.47.232 docker stack rm springboot'
+            sh 'ssh -o StrictHostKeyChecking=no ubuntu@54.196.37.38 docker-compose up -d'
+        }
     }
 }
