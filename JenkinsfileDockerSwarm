@@ -1,11 +1,13 @@
 node{
+
+    def mavenHome = tool name: "mymaven"
     stage("Git CheckOut"){
-        git url: 'https://github.com/p2pro-DevOps/spring-boot-mongo-docker.git',branch: 'master'
+        git url: 'https://github.com/maveric-coder/spring-boot-mongo-docker.git',branch: 'main'
     }
     
     stage(" Maven Clean Package"){
-      def mavenHome =  tool name: "Maven-3.6.1", type: "maven"
-      def mavenCMD = "${mavenHome}/bin/mvn"
+      // def mavenHome =  tool name: "Maven-3.6.1", type: "maven"
+      // def mavenCMD = "${mavenHome}/bin/mvn"
       sh "${mavenCMD} clean package"
     } 
     
