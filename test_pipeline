@@ -11,7 +11,7 @@ node{
       sh "${mavenHome}/bin/mvn clean package"
     }
     stage("Build Docker image"){
-        sh "docker build -t anand2909/spring-boot-mongo1 ."
+        sh "docker build -t anand2909/spring-boot-mongo:v1 ."
             
           }
     stage("Push the image to Docker hub")
@@ -19,11 +19,11 @@ node{
         withCredentials([string(credentialsId: 'docker_hub_pwd', variable: 'docker_hub_pwd')]) {
         sh "docker login -u anand2909 -p ${Docker_Hub_Pwd}"
     }
-     sh "docker push anand2909/spring-boot-mongo1"
+     sh "docker push anand2909/spring-boot-mongo:v1"
     }
     stage("Remove local image")
     {
-        sh "docker rmi -f anand2909/spring-boot-mongo1"
+        sh "docker rmi -f anand2909/spring-boot-mongo:v1"
     }
     stage("Deploy to docker"){
         sshagent(['docker_vm']) {
