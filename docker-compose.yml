@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   springboot:
-    image: anand2909/spring-boot-mongo
+    image: anand2909/spring-boot-mongo:v1
     container_name: webapp
     ports:
       - 8080:8080
