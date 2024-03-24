@@ -34,7 +34,7 @@ If you want to run docker as non-root user then you need to add it to the docker
 Create the docker group if it does not exist
 ```sh
 sudo groupadd docker
-```a
+```
 Add your user to the docker group.
 ```sh
 sudo usermod -aG docker $USER
