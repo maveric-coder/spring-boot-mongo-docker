@@ -27,8 +27,12 @@ docker build -t anand2909/spring-boot-mongo .
 ```docker-compose 
 docker-compose up -d 
 ```
+## List Docker Containers
+```docker
+docker ps -a
+```
 
-
+### Docker error troubleshooting steps
 If you want to run docker as non-root user then you need to add it to the docker group.
 
 Create the docker group if it does not exist
@@ -53,13 +57,6 @@ reboot
 ```
 permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Head "http://%2Fvar%2Frun%2Fdocker.sock/_ping": dial unix /var/run/docker.sock: connect: permission denied
 
-
 ```sh
 sudo chmod 666 /var/run/docker.sock
-
-
-## List Docker Containers
-```docker
-docker ps -a
 ```
-
